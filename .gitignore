@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data and model outputs (regenerate with the scripts in src/)
+data/
+outputs/models/
+outputs/*.npy
+outputs/*.joblib
+
+# Deck tooling
+node_modules/
+
+.DS_Store
+# macOS metadata sidecars created on exFAT drives
+._*
+
+# Final model copies (large; back up separately)
+final models/
+
+# Third-party papers and datasheets (copyrighted; see papers/references.bib)
+papers/**/*.pdf

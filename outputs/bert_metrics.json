@@ -1,0 +1,43 @@
+{
+  "args": {
+    "model": "distilbert-base-uncased",
+    "epochs": 2,
+    "batch_size": 16,
+    "lr": 3e-05,
+    "max_len": 512,
+    "head": 128,
+    "device": "auto",
+    "limit": null,
+    "prefix": "bert"
+  },
+  "device": "mps",
+  "truncated_share": {
+    "train": 0.1318,
+    "val": 0.1366,
+    "test": 0.12344
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.2879651381023228,
+      "val_accuracy": 0.9268,
+      "val_f1": 0.925700365408039
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.13739909351225943,
+      "val_accuracy": 0.9316,
+      "val_f1": 0.931899641577061
+    }
+  ],
+  "val": {
+    "accuracy": 0.9316,
+    "f1": 0.931899641577061
+  },
+  "test": {
+    "accuracy": 0.93508,
+    "f1": 0.9355364022719148
+  },
+  "test_reviews_per_sec": 130.32868667115312,
+  "train_seconds": 2831.856502291994
+}

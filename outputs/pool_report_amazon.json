@@ -1,0 +1,18 @@
+{
+  "amazon_duplicate_in_pool": 762073,
+  "amazon_kept": 11951896,
+  "amazon_kept_label0": 1840711,
+  "amazon_kept_label1": 10111185,
+  "amazon_matches_test_exact": 86,
+  "amazon_matches_test_prefix": 73,
+  "amazon_matches_test_suffix": 23,
+  "amazon_matches_train_exact": 60,
+  "amazon_matches_train_prefix": 68,
+  "amazon_matches_train_suffix": 19,
+  "amazon_matches_val_exact": 16,
+  "amazon_matches_val_prefix": 20,
+  "amazon_matches_val_suffix": 8,
+  "amazon_read": 17328314,
+  "amazon_too_short": 3353755,
+  "amazon_unlabelled": 1260217
+}

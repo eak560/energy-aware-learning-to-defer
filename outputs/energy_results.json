@@ -1,0 +1,126 @@
+{
+  "params": {
+    "V": {
+      "value": 3.3,
+      "unit": "V",
+      "source": "ESP32-S3 datasheet v2.2, measurement supply (Sec. 5.6)"
+    },
+    "I_cpu": {
+      "value": 0.0512,
+      "unit": "A",
+      "source": "datasheet Table 5-9: 240 MHz, one core active, Typ1"
+    },
+    "I_tx": {
+      "value": 0.283,
+      "unit": "A",
+      "source": "datasheet Table 5-7: 802.11n HT20 MCS7 @18.5 dBm, peak"
+    },
+    "I_rx": {
+      "value": 0.088,
+      "unit": "A",
+      "source": "datasheet Table 5-7: RX 802.11b/g/n HT20"
+    },
+    "t_local": {
+      "value": 0.005,
+      "unit": "s",
+      "source": "PLACEHOLDER: on-chip model time per review, to be measured"
+    },
+    "t_tx": {
+      "value": 0.01,
+      "unit": "s",
+      "source": "PLACEHOLDER: sending one review (~1.5 KB) on an open connection"
+    },
+    "t_wait": {
+      "value": 1.0,
+      "unit": "s",
+      "source": "PLACEHOLDER: radio listening while the hub answers; swept below"
+    }
+  },
+  "battery_J_illustrative": 26640.0,
+  "chip_accuracy": 0.92688,
+  "hub_accuracy": 0.93508,
+  "send_all_mJ": 300.5838,
+  "targets": [
+    {
+      "target_accuracy": 0.931,
+      "confidence": {
+        "send_rate": 0.02,
+        "mJ_per_review": 6.83958,
+        "vs_send_all": 0.02275432009309883,
+        "reviews_per_charge": 3894976.007298694,
+        "devices_per_hub_vs_send_all": 50.0
+      },
+      "learned": {
+        "send_rate": 0.03,
+        "mJ_per_review": 9.836969999999999,
+        "vs_send_all": 0.032726214786026386,
+        "reviews_per_charge": 2708150.985516882,
+        "devices_per_hub_vs_send_all": 33.333333333333336
+      }
+    },
+    {
+      "target_accuracy": 0.933,
+      "confidence": {
+        "send_rate": 0.04,
+        "mJ_per_review": 12.834359999999998,
+        "vs_send_all": 0.042698109478953944,
+        "reviews_per_charge": 2075678.1015960285,
+        "devices_per_hub_vs_send_all": 25.0
+      },
+      "learned": {
+        "send_rate": 0.04,
+        "mJ_per_review": 12.834359999999998,
+        "vs_send_all": 0.042698109478953944,
+        "reviews_per_charge": 2075678.1015960285,
+        "devices_per_hub_vs_send_all": 25.0
+      }
+    },
+    {
+      "target_accuracy": 0.9351,
+      "confidence": {
+        "send_rate": 0.05,
+        "mJ_per_review": 15.831749999999998,
+        "vs_send_all": 0.05267000417188151,
+        "reviews_per_charge": 1682694.5852479986,
+        "devices_per_hub_vs_send_all": 20.0
+      },
+      "learned": {
+        "send_rate": 0.05,
+        "mJ_per_review": 15.831749999999998,
+        "vs_send_all": 0.05267000417188151,
+        "reviews_per_charge": 1682694.5852479986,
+        "devices_per_hub_vs_send_all": 20.0
+      }
+    }
+  ],
+  "t_wait_sweep": [
+    {
+      "t_wait_s": 0.1,
+      "send_all_mJ": 39.2238,
+      "chip_only_mJ": 0.8448,
+      "confidence_mJ_at_hub_accuracy": 2.76375,
+      "learned_mJ_at_hub_accuracy": 2.76375
+    },
+    {
+      "t_wait_s": 0.5,
+      "send_all_mJ": 155.38379999999998,
+      "chip_only_mJ": 0.8448,
+      "confidence_mJ_at_hub_accuracy": 8.57175,
+      "learned_mJ_at_hub_accuracy": 8.57175
+    },
+    {
+      "t_wait_s": 1.0,
+      "send_all_mJ": 300.5838,
+      "chip_only_mJ": 0.8448,
+      "confidence_mJ_at_hub_accuracy": 15.831749999999998,
+      "learned_mJ_at_hub_accuracy": 15.831749999999998
+    },
+    {
+      "t_wait_s": 2.0,
+      "send_all_mJ": 590.9838,
+      "chip_only_mJ": 0.8448,
+      "confidence_mJ_at_hub_accuracy": 30.351749999999996,
+      "learned_mJ_at_hub_accuracy": 30.351749999999996
+    }
+  ]
+}

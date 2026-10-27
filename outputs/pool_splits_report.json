@@ -1,0 +1,18 @@
+{
+  "chip_train": {
+    "rows": 1920408,
+    "positive_share": 0.5001020616452337
+  },
+  "defer": {
+    "rows": 300000,
+    "positive_share": 0.49934666666666666
+  },
+  "test_movies": {
+    "rows": 107283,
+    "positive_share": 0.767157890812151
+  },
+  "amazon_long": {
+    "rows": 1253450,
+    "positive_share": 0.5
+  }
+}

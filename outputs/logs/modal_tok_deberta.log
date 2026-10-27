@@ -1,0 +1,18 @@
+✓ Initialized. View run at 
+https://modal.com/apps/iamehsan/main/ap-WuU30f7ZDe4SWNXJ2LuXni
+✓ Created objects.
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src/modal_app.py
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src
+├── ✓ Created Function tokenize_remote.
+└── ✓ Created Function train_remote.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+tokenised train: 20,000 reviews in 5s
+tokenised val: 5,000 reviews in 1s
+tokenised test: 25,000 reviews in 6s
+tokenised pool_1000000: 1,000,000 reviews in 167s
+tokenised val_pool_v2: 50,000 reviews in 11s
+tokenised defer_v2: 300,000 reviews in 48s
+tokens cached
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/iamehsan/main/ap-WuU30f7ZDe4SWNXJ2LuXni

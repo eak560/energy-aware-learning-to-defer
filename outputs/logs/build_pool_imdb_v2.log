@@ -1,0 +1,59 @@
+reference fingerprints: 49,575 full, 44,325 prefix
+imdb: 100,000 kept / 129,710 read
+imdb: 200,000 kept / 254,141 read
+imdb: 300,000 kept / 377,207 read
+imdb: 400,000 kept / 499,253 read
+imdb: 500,000 kept / 620,876 read
+imdb: 600,000 kept / 743,247 read
+imdb: 700,000 kept / 865,274 read
+imdb: 800,000 kept / 1,005,935 read
+imdb: 900,000 kept / 1,133,604 read
+imdb: 1,000,000 kept / 1,259,688 read
+imdb: 1,100,000 kept / 1,385,285 read
+imdb: 1,200,000 kept / 1,511,204 read
+imdb: 1,300,000 kept / 1,636,498 read
+imdb: 1,400,000 kept / 1,763,258 read
+imdb: 1,500,000 kept / 1,892,052 read
+imdb: 1,600,000 kept / 2,025,367 read
+imdb: 1,700,000 kept / 2,160,805 read
+imdb: 1,800,000 kept / 2,295,542 read
+imdb: 1,900,000 kept / 2,427,312 read
+imdb: 2,000,000 kept / 2,561,231 read
+imdb: 2,100,000 kept / 2,693,649 read
+imdb: 2,200,000 kept / 2,827,117 read
+imdb: 2,300,000 kept / 2,965,708 read
+imdb: 2,400,000 kept / 3,120,413 read
+imdb: 2,500,000 kept / 3,280,100 read
+imdb: 2,600,000 kept / 3,419,098 read
+imdb: 2,700,000 kept / 3,543,851 read
+imdb: 2,800,000 kept / 3,666,935 read
+imdb: 2,900,000 kept / 3,793,619 read
+imdb: 3,000,000 kept / 3,932,938 read
+imdb: 3,100,000 kept / 4,080,640 read
+imdb: 3,200,000 kept / 4,216,854 read
+imdb: 3,300,000 kept / 4,349,861 read
+imdb: 3,400,000 kept / 4,483,728 read
+imdb: 3,500,000 kept / 4,621,825 read
+imdb: 3,600,000 kept / 4,752,936 read
+imdb: 3,700,000 kept / 4,884,068 read
+imdb: 3,800,000 kept / 5,015,582 read
+imdb: 3,900,000 kept / 5,173,113 read
+imdb: 4,000,000 kept / 5,377,727 read
+{
+ "imdb_duplicate_in_pool": 39243,
+ "imdb_kept": 4099728,
+ "imdb_kept_label0": 1135184,
+ "imdb_kept_label1": 2964544,
+ "imdb_matches_test_exact": 22766,
+ "imdb_matches_test_prefix": 537,
+ "imdb_matches_test_suffix": 333,
+ "imdb_matches_train_exact": 18204,
+ "imdb_matches_train_prefix": 285,
+ "imdb_matches_train_suffix": 256,
+ "imdb_matches_val_exact": 4583,
+ "imdb_matches_val_prefix": 86,
+ "imdb_matches_val_suffix": 26,
+ "imdb_read": 5571499,
+ "imdb_too_short": 614,
+ "imdb_unlabelled": 1384838
+}

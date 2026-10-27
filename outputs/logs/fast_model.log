@@ -1,0 +1,5 @@
+Fitting 3 folds for each of 7 candidates, totalling 21 fits
+best C = 16  (cv accuracy 0.8991)
+val  accuracy 0.9072  f1 0.9078
+test accuracy 0.9028  f1 0.9031
+throughput    5,505 reviews/sec (CPU)

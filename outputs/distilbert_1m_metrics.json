@@ -1,0 +1,103 @@
+{
+  "args": {
+    "model": "distilbert-base-uncased",
+    "pool_reviews": 1000000,
+    "prefix": "distilbert_1m",
+    "epochs": 1.0,
+    "lr": 3e-05,
+    "max_len": 512,
+    "head": 128,
+    "batch_size": 32,
+    "accum": 1,
+    "precision": "bf16",
+    "eval_every": 2000,
+    "ckpt_every": 1000,
+    "select_on": "val_pool",
+    "tokenize_only": false,
+    "skip_defer": false
+  },
+  "train_reviews": 1020000,
+  "best_val": 0.96046,
+  "history": [
+    {
+      "step": 2000,
+      "val_pool_accuracy": 0.92976
+    },
+    {
+      "step": 4000,
+      "val_pool_accuracy": 0.9366
+    },
+    {
+      "step": 6000,
+      "val_pool_accuracy": 0.946
+    },
+    {
+      "step": 8000,
+      "val_pool_accuracy": 0.94548
+    },
+    {
+      "step": 10000,
+      "val_pool_accuracy": 0.94582
+    },
+    {
+      "step": 12000,
+      "val_pool_accuracy": 0.95278
+    },
+    {
+      "step": 14000,
+      "val_pool_accuracy": 0.95168
+    },
+    {
+      "step": 16000,
+      "val_pool_accuracy": 0.9538
+    },
+    {
+      "step": 18000,
+      "val_pool_accuracy": 0.9559
+    },
+    {
+      "step": 20000,
+      "val_pool_accuracy": 0.95692
+    },
+    {
+      "step": 22000,
+      "val_pool_accuracy": 0.95746
+    },
+    {
+      "step": 24000,
+      "val_pool_accuracy": 0.95752
+    },
+    {
+      "step": 26000,
+      "val_pool_accuracy": 0.95888
+    },
+    {
+      "step": 28000,
+      "val_pool_accuracy": 0.95928
+    },
+    {
+      "step": 30000,
+      "val_pool_accuracy": 0.96046
+    },
+    {
+      "step": 31875,
+      "val_pool_accuracy": 0.96036
+    }
+  ],
+  "val": {
+    "accuracy": 0.9568,
+    "f1": 0.9572784810126582
+  },
+  "val_pool": {
+    "accuracy": 0.96046,
+    "f1": 0.9605223746480561
+  },
+  "test": {
+    "accuracy": 0.95832,
+    "f1": 0.9588174847838116
+  },
+  "defer": {
+    "accuracy": 0.9568933333333334,
+    "f1": 0.9570838809021279
+  }
+}

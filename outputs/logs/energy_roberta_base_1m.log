@@ -1,0 +1,4 @@
+accuracy >= 94.52%: confidence 24.8 mJ (8% sent) | learned 24.8 mJ (8% sent)
+accuracy >= 95.62%: confidence 42.8 mJ (14% sent) | learned 45.8 mJ (15% sent)
+accuracy >= 96.72%: confidence 276.6 mJ (92% sent) | learned 300.6 mJ (100% sent)
+send everything: 300.6 mJ per review

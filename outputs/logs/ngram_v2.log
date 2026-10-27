@@ -1,0 +1,10 @@
+hashed val_pool_v2: 50,000 reviews, 16,853,993 features in 4s
+hashed chip_train_v2: 1,532,574 reviews, 378,507,881 features in 31s
+    1024KB nb=True alpha=1e-08 n=1,552,574: val int8 accuracy 0.9277 (22s)
+    1024KB nb=True alpha=3e-08 n=1,552,574: val int8 accuracy 0.9292 (23s)
+    1024KB nb=True alpha=1e-07 n=1,552,574: val int8 accuracy 0.9288 (23s)
+ngram1024KB {'alpha': 3e-08, 'alpha_at_grid_edge': False, 'val': {'accuracy': 0.9284, 'f1': 0.9293328069482827}, 'val_pool': {'accuracy': 0.92922, 'f1': 0.9290625187917176}, 'test': {'accuracy': 0.928, 'f1': 0.9291505943477919}}
+    256KB nb=True alpha=1e-08 n=1,552,574: val int8 accuracy 0.9234 (60s)
+    256KB nb=True alpha=3e-08 n=1,552,574: val int8 accuracy 0.9243 (60s)
+    256KB nb=True alpha=1e-07 n=1,552,574: val int8 accuracy 0.9227 (60s)
+ngram256KB {'alpha': 3e-08, 'alpha_at_grid_edge': False, 'val': {'accuracy': 0.9256, 'f1': 0.9264822134387352}, 'val_pool': {'accuracy': 0.92432, 'f1': 0.924067905446081}, 'test': {'accuracy': 0.92316, 'f1': 0.9243790103531079}}

@@ -1,0 +1,88 @@
+{
+  "t_wait_s": 1.0,
+  "send_all_mJ": 300.5838,
+  "chip_only_mJ": 0.8448,
+  "rows": [
+    {
+      "hub": "DistilBERT, 20k reviews",
+      "gap_share": 0.5,
+      "val_rate": 0.01,
+      "test_sent": 0.01156,
+      "test_accuracy": 0.92932,
+      "mJ": 4.3097828400000004,
+      "saving_vs_send_all": 69.74453497058333
+    },
+    {
+      "hub": "DistilBERT, 20k reviews",
+      "gap_share": 0.75,
+      "val_rate": 0.02,
+      "test_sent": 0.02116,
+      "test_accuracy": 0.93136,
+      "mJ": 7.18727724,
+      "saving_vs_send_all": 41.8216509483082
+    },
+    {
+      "hub": "DistilBERT, 20k reviews",
+      "gap_share": 0.9,
+      "val_rate": 0.03,
+      "test_sent": 0.03432,
+      "test_accuracy": 0.93312,
+      "mJ": 11.131842480000001,
+      "saving_vs_send_all": 27.002160742037375
+    },
+    {
+      "hub": "DistilBERT, +1M reviews",
+      "gap_share": 0.5,
+      "val_rate": 0.08,
+      "test_sent": 0.08312,
+      "test_accuracy": 0.94408,
+      "mJ": 25.759105679999998,
+      "saving_vs_send_all": 11.66903089470923
+    },
+    {
+      "hub": "DistilBERT, +1M reviews",
+      "gap_share": 0.75,
+      "val_rate": 0.14,
+      "test_sent": 0.15032,
+      "test_accuracy": 0.95188,
+      "mJ": 45.90156647999999,
+      "saving_vs_send_all": 6.548443180712992
+    },
+    {
+      "hub": "DistilBERT, +1M reviews",
+      "gap_share": 0.9,
+      "val_rate": 0.25,
+      "test_sent": 0.2608,
+      "test_accuracy": 0.9568,
+      "mJ": 79.01673119999998,
+      "saving_vs_send_all": 3.804052577664717
+    },
+    {
+      "hub": "RoBERTa-base, +1M reviews",
+      "gap_share": 0.5,
+      "val_rate": 0.08,
+      "test_sent": 0.08312,
+      "test_accuracy": 0.94764,
+      "mJ": 25.759105679999998,
+      "saving_vs_send_all": 11.66903089470923
+    },
+    {
+      "hub": "RoBERTa-base, +1M reviews",
+      "gap_share": 0.75,
+      "val_rate": 0.16,
+      "test_sent": 0.16904,
+      "test_accuracy": 0.95888,
+      "mJ": 51.512680559999986,
+      "saving_vs_send_all": 5.835141886081653
+    },
+    {
+      "hub": "RoBERTa-base, +1M reviews",
+      "gap_share": 0.9,
+      "val_rate": 0.24,
+      "test_sent": 0.2508,
+      "test_accuracy": 0.9636,
+      "mJ": 76.01934120000001,
+      "saving_vs_send_all": 3.954043737490321
+    }
+  ]
+}

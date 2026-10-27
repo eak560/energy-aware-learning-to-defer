@@ -1,0 +1,23 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/iamehsan/main/ap-TCrd9kGed0oqHdOC1qiyqR
+✓ Created objects.
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src/modal_app.py
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src
+├── ✓ Created Function tokenize_remote.
+├── ✓ Created Function train_remote.
+└── ✓ Created Function predict_remote.
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   4%|▍         | 16/394 [00:00<00:02, 135.63it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:00<00:01, 183.70it/s]
+[1ALoading weights:  19%|█▉        | 74/394 [00:00<00:02, 138.43it/s]
+[1ALoading weights:  37%|███▋      | 146/394 [00:00<00:00, 288.93it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:00<00:00, 362.11it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 487.89it/s]
+val {'accuracy': 0.9718, 'f1': 0.9719737626714371, 'long_review_share': 0.124}
+val_pool {'accuracy': 0.97502, 'f1': 0.9750035023115257, 'long_review_share': 0.11462}
+test {'accuracy': 0.97372, 'f1': 0.9738860845025636, 'long_review_share': 0.11436}
+✓ App completed. View run at 
+https://modal.com/apps/iamehsan/main/ap-TCrd9kGed0oqHdOC1qiyqR

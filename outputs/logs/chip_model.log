@@ -1,0 +1,44 @@
+1. accuracy vs training-set size (256 KB, NB on)
+    256KB nb=True alpha=1e-07 n=20,000: val int8 accuracy 0.8964 (1s)
+    256KB nb=True alpha=3e-07 n=20,000: val int8 accuracy 0.9010 (1s)
+    256KB nb=True alpha=1e-06 n=20,000: val int8 accuracy 0.9018 (1s)
+    256KB nb=True alpha=3e-06 n=20,000: val int8 accuracy 0.9018 (1s)
+    256KB nb=True alpha=1e-05 n=20,000: val int8 accuracy 0.8954 (1s)
+    256KB nb=True alpha=1e-07 n=100,000: val int8 accuracy 0.9108 (5s)
+    256KB nb=True alpha=3e-07 n=100,000: val int8 accuracy 0.9110 (5s)
+    256KB nb=True alpha=1e-06 n=100,000: val int8 accuracy 0.9078 (5s)
+    256KB nb=True alpha=3e-06 n=100,000: val int8 accuracy 0.9036 (5s)
+    256KB nb=True alpha=1e-05 n=100,000: val int8 accuracy 0.8944 (5s)
+    256KB nb=True alpha=1e-08 n=300,000: val int8 accuracy 0.9174 (14s)
+    256KB nb=True alpha=3e-08 n=300,000: val int8 accuracy 0.9178 (14s)
+    256KB nb=True alpha=1e-07 n=300,000: val int8 accuracy 0.9182 (14s)
+    256KB nb=True alpha=3e-07 n=300,000: val int8 accuracy 0.9170 (14s)
+    256KB nb=True alpha=1e-06 n=300,000: val int8 accuracy 0.9098 (14s)
+    256KB nb=True alpha=3e-09 n=1,000,000: val int8 accuracy 0.9230 (45s)
+    256KB nb=True alpha=1e-08 n=1,000,000: val int8 accuracy 0.9210 (46s)
+    256KB nb=True alpha=3e-08 n=1,000,000: val int8 accuracy 0.9206 (46s)
+    256KB nb=True alpha=1e-07 n=1,000,000: val int8 accuracy 0.9210 (46s)
+    256KB nb=True alpha=3e-09 n=1,940,408: val int8 accuracy 0.9266 (88s)
+    256KB nb=True alpha=1e-08 n=1,940,408: val int8 accuracy 0.9276 (88s)
+    256KB nb=True alpha=3e-08 n=1,940,408: val int8 accuracy 0.9264 (88s)
+    256KB nb=True alpha=1e-07 n=1,940,408: val int8 accuracy 0.9226 (89s)
+2. full size: NB on/off, 256 KB vs 1 MB
+/Volumes/Ehsan/AI Sentiment/src/chip_model.py:159: RuntimeWarning: overflow encountered in exp
+  return 1 / (1 + np.exp(-out))
+    256KB nb=False alpha=3e-09 n=1,940,408: val int8 accuracy 0.9212 (83s)
+/Volumes/Ehsan/AI Sentiment/src/chip_model.py:159: RuntimeWarning: overflow encountered in exp
+  return 1 / (1 + np.exp(-out))
+    256KB nb=False alpha=1e-08 n=1,940,408: val int8 accuracy 0.9210 (83s)
+    256KB nb=False alpha=3e-08 n=1,940,408: val int8 accuracy 0.9242 (83s)
+    256KB nb=False alpha=1e-07 n=1,940,408: val int8 accuracy 0.9272 (83s)
+    1024KB nb=True alpha=3e-09 n=1,940,408: val int8 accuracy 0.9300 (39s)
+    1024KB nb=True alpha=1e-08 n=1,940,408: val int8 accuracy 0.9310 (33s)
+    1024KB nb=True alpha=3e-08 n=1,940,408: val int8 accuracy 0.9312 (33s)
+    1024KB nb=True alpha=1e-07 n=1,940,408: val int8 accuracy 0.9296 (33s)
+3-4. ablations with the main model's settings
+hashed test_movies: 107,283 reviews, 36,421,502 features in 5s
+    256KB nb=True alpha=1e-08 n=2,047,691: val int8 accuracy 0.9276 (88s)
+hashed amazon_long: 1,253,450 reviews, 276,772,840 features in 22s
+    256KB nb=True alpha=1e-08 n=3,193,858: val int8 accuracy 0.9280 (128s)
+main model: {'key': '256KB_nbon', 'bits': 18, 'alpha': 1e-08, 'bytes': 262144, 'val': {'accuracy': 0.9276, 'f1': 0.9282030940103134}, 'test': {'accuracy': 0.92688, 'f1': 0.9275465715418153}}
+ablations: {'plus_test_movie_reviews': {'train_reviews': 2047691, 'val': {'accuracy': 0.9276, 'f1': 0.9285150078988942}, 'test': {'accuracy': 0.92712, 'f1': 0.9281092171717171}}, 'plus_amazon_long': {'train_reviews': 3193858, 'val': {'accuracy': 0.928, 'f1': 0.9288256227758007}, 'test': {'accuracy': 0.9256, 'f1': 0.926488024662082}}}

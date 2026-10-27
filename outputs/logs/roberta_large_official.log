@@ -1,0 +1,4 @@
+training on 20,000 reviews, mean 261 tokens
+W1019 11:42:34.741000 68408 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/389 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 143/389 [00:00<00:00, 1410.90it/s]Loading weig/opt/anaconda3/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWa/opt/anaconda3/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

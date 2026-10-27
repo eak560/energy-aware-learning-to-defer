@@ -1,0 +1,49 @@
+{
+  "best_C": 16,
+  "cv_accuracy": 0.899100154503226,
+  "n_features": 365664,
+  "val": {
+    "accuracy": 0.9072,
+    "f1": 0.9077901430842608
+  },
+  "test": {
+    "accuracy": 0.90284,
+    "f1": 0.9030996928232338
+  },
+  "test_reviews_per_sec": 5505.256777010496,
+  "grid_search_seconds": 38.13607408400276,
+  "most_negative": [
+    "worst",
+    "bad",
+    "awful",
+    "the worst",
+    "boring",
+    "poor",
+    "waste",
+    "terrible",
+    "worse",
+    "horrible",
+    "poorly",
+    "dull",
+    "nothing",
+    "unfortunately",
+    "no"
+  ],
+  "most_positive": [
+    "great",
+    "excellent",
+    "perfect",
+    "wonderful",
+    "the best",
+    "amazing",
+    "best",
+    "today",
+    "loved",
+    "love",
+    "brilliant",
+    "superb",
+    "favorite",
+    "fun",
+    "well"
+  ]
+}

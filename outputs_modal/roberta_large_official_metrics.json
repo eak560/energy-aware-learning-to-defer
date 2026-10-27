@@ -1,0 +1,43 @@
+{
+  "args": {
+    "model": "roberta-large",
+    "pool_reviews": 0,
+    "prefix": "roberta_large_official",
+    "epochs": 2.0,
+    "lr": 1e-05,
+    "max_len": 512,
+    "head": 128,
+    "batch_size": 32,
+    "accum": 1,
+    "precision": "bf16",
+    "eval_every": 625,
+    "ckpt_every": 300,
+    "select_on": "val_pool",
+    "tokenize_only": false,
+    "skip_defer": true
+  },
+  "train_reviews": 20000,
+  "best_val": 0.96382,
+  "history": [
+    {
+      "step": 625,
+      "val_pool_accuracy": 0.96382
+    },
+    {
+      "step": 1250,
+      "val_pool_accuracy": 0.96212
+    }
+  ],
+  "val": {
+    "accuracy": 0.9626,
+    "f1": 0.962682099381361
+  },
+  "val_pool": {
+    "accuracy": 0.96382,
+    "f1": 0.9636491510097458
+  },
+  "test": {
+    "accuracy": 0.96544,
+    "f1": 0.9655639697090475
+  }
+}

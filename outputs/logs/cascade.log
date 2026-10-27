@@ -1,0 +1,23 @@
+W1019 02:25:25.635000 36476 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+val: fast 0.9072  bert 0.9316  -> tau 0.640 routes 8.6% at 0.9268
+Loading weights:   0%|          | 0/104 [00:00<?, ?it/s]Loading weights: 100%|██████████| 104/104 [00:00<00:00, 12285.81it/s]
+benchmark:   0%|          | 0/1 [00:00<?, ?it/s]benchmark: 100%|██████████| 1/1 [00:00<00:00,  1.24it/s]
+benchmark:   0%|          | 0/63 [00:00<?, ?it/s]benchmark:  83%|████████▎ | 52/63 [00:10<00:02,  5.18it/s]benchmark: 100%|██████████| 63/63 [00:14<00:00,  4.23it/s]
+benchmark:   0%|          | 0/7 [00:00<?, ?it/s]benchmark: 100%|██████████| 7/7 [00:01<00:00,  3.95it/s]
+
+| Model | Accuracy | F1 | Sent to transformer | Reviews/sec |
+|---|---|---|---|---|
+| TF-IDF + LR | 90.28% | 0.9031 | 0.0% | 6,822 |
+| DistilBERT | 93.51% | 0.9355 | 100.0% | 133 |
+| **Cascade** (τ = 0.640) | 92.50% | 0.9253 | 10.0% | 960 |
+| Stacked ensemble (upper bound) | 93.95% | 0.9397 | 100.0% | 131 |
+
+at least one model right on 96.46% of test reviews
+errors: {'bert_fixed': 1543, 'bert_broke': 737, 'both_wrong': 886}
+
+accuracy by review length (words):
+   words    n   fast   bert  cascade
+   4-125 6388 0.9058 0.9382   0.9272
+ 126-170 6116 0.9048 0.9397   0.9276
+ 171-274 6253 0.8983 0.9340   0.9202
+275-2235 6243 0.9025 0.9286   0.9249

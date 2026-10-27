@@ -1,0 +1,67 @@
+{
+  "args": {
+    "model": "roberta-large",
+    "pool_reviews": 1000000,
+    "prefix": "roberta_large_1m",
+    "epochs": 1.0,
+    "lr": 1e-05,
+    "max_len": 512,
+    "head": 128,
+    "batch_size": 32,
+    "accum": 1,
+    "precision": "bf16",
+    "eval_every": 4000,
+    "ckpt_every": 2000,
+    "select_on": "val_pool",
+    "tokenize_only": false,
+    "skip_defer": true
+  },
+  "train_reviews": 1020000,
+  "best_val": 0.97236,
+  "history": [
+    {
+      "step": 4000,
+      "val_pool_accuracy": 0.96478
+    },
+    {
+      "step": 8000,
+      "val_pool_accuracy": 0.9675
+    },
+    {
+      "step": 12000,
+      "val_pool_accuracy": 0.9695
+    },
+    {
+      "step": 16000,
+      "val_pool_accuracy": 0.97
+    },
+    {
+      "step": 20000,
+      "val_pool_accuracy": 0.96928
+    },
+    {
+      "step": 24000,
+      "val_pool_accuracy": 0.97104
+    },
+    {
+      "step": 28000,
+      "val_pool_accuracy": 0.97206
+    },
+    {
+      "step": 31875,
+      "val_pool_accuracy": 0.97236
+    }
+  ],
+  "val": {
+    "accuracy": 0.9702,
+    "f1": 0.9703128113169954
+  },
+  "val_pool": {
+    "accuracy": 0.97236,
+    "f1": 0.9723323323323323
+  },
+  "test": {
+    "accuracy": 0.97208,
+    "f1": 0.9722619615323478
+  }
+}

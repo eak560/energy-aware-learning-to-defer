@@ -1,0 +1,18 @@
+{
+  "imdb_duplicate_in_pool": 39243,
+  "imdb_kept": 4099728,
+  "imdb_kept_label0": 1135184,
+  "imdb_kept_label1": 2964544,
+  "imdb_matches_test_exact": 22766,
+  "imdb_matches_test_prefix": 537,
+  "imdb_matches_test_suffix": 333,
+  "imdb_matches_train_exact": 18204,
+  "imdb_matches_train_prefix": 285,
+  "imdb_matches_train_suffix": 256,
+  "imdb_matches_val_exact": 4583,
+  "imdb_matches_val_prefix": 86,
+  "imdb_matches_val_suffix": 26,
+  "imdb_read": 5571499,
+  "imdb_too_short": 614,
+  "imdb_unlabelled": 1384838
+}

@@ -1,0 +1,48 @@
+{
+  "pool_rows": 4099728,
+  "test_movie": {
+    "rows": 163409,
+    "previous_flag_rows": 107283,
+    "newly_flagged": 56126
+  },
+  "test_author": {
+    "rows": 635853,
+    "authors": 16819
+  },
+  "near_dup": {
+    ">=0.1": 928,
+    ">=0.2": 582,
+    ">=0.3": 443,
+    ">=0.5": 363,
+    ">=0.8": 38
+  },
+  "eligible_rows": 3336925,
+  "splits": {
+    "val_pool": {
+      "rows": 50000,
+      "positive_share": 0.5,
+      "median_words": 170
+    },
+    "defer": {
+      "rows": 300000,
+      "positive_share": 0.50136,
+      "median_words": 124
+    },
+    "chip_train": {
+      "rows": 1532574,
+      "positive_share": 0.4997337812073022,
+      "median_words": 124
+    },
+    "test_movie_reviews": {
+      "rows": 163298,
+      "positive_share": 0.7654717142892136,
+      "median_words": 170
+    },
+    "test_author_reviews": {
+      "rows": 599062,
+      "positive_share": 0.7773051871091807,
+      "median_words": 232
+    }
+  },
+  "val_pool_movies_disjoint_from_train": true
+}

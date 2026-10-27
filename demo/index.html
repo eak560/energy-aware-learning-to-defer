@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentiment on a Battery</title>
+<style>
+  :root {
+    --ink: #3a2e31; --muted: #7a6e70; --line: #e6dadd; --bg: #ffffff; --card: #f7eff1; --mint: #e3ebe5;
+    --mauve: #9c7f89; --rose: #8c4b57; --sage: #4a5a50; --pos: #3f6b52; --neg: #8c4b57; --free: #efe6e8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.5 Calibri, "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 28px 24px 60px; }
+  h1, h2, .big { font-family: Cambria, Georgia, serif; }
+  h1 { font-size: 34px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  section { margin: 0 0 34px; }
+  h2 { font-size: 24px; margin: 0 0 14px; display: flex; align-items: center; gap: 12px; }
+  h2 .n { width: 34px; height: 34px; border-radius: 50%; background: var(--mauve); color: #fff; font-size: 18px;
+          display: inline-flex; align-items: center; justify-content: center; font-family: Calibri, system-ui, sans-serif; }
+  .card { background: var(--card); border-radius: 12px; padding: 18px 20px; }
+  .grid { display: grid; gap: 16px; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .label { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .big { font-size: 34px; font-weight: 700; line-height: 1.15; margin: 6px 0 2px; }
+  .small { font-size: 14px; color: var(--muted); }
+  /* memory bar */
+  .mem { display: flex; height: 46px; border-radius: 8px; overflow: hidden; margin: 10px 0 8px; }
+  .mem div { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 15px; white-space: nowrap; }
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 15px; }
+  .legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px;
+                         background: var(--c); vertical-align: -1px; }
+  /* input */
+  textarea { width: 100%; min-height: 110px; font: inherit; padding: 12px 14px; border: 1px solid var(--line);
+             border-radius: 10px; resize: vertical; color: var(--ink); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+  .chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 14px; cursor: pointer;
+          font: inherit; font-size: 15px; color: var(--ink); }
+  .chip:hover { border-color: var(--mauve); }
+  .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; }
+  .controls label { display: flex; flex-direction: column; font-size: 14px; color: var(--muted); gap: 4px; }
+  select { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: #fff; }
+  button.go { background: var(--rose); color: #fff; border: 0; border-radius: 10px; padding: 11px 26px; font: inherit;
+              font-weight: 700; font-size: 18px; cursor: pointer; }
+  button.go:disabled { opacity: .55; cursor: wait; }
+  button.ghost { background: #fff; color: var(--rose); border: 1px solid var(--rose); }
+  /* pipeline */
+  .pipe { display: grid; grid-template-columns: 1fr 44px 1fr 44px 1fr; align-items: stretch; }
+  .arrow { display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--muted); }
+  .verdict { font-family: Cambria, Georgia, serif; font-size: 30px; font-weight: 700; }
+  .pos { color: var(--pos); } .neg { color: var(--neg); }
+  .bar { height: 10px; background: #fff; border-radius: 5px; overflow: hidden; margin: 8px 0 4px; }
+  .bar i { display: block; height: 100%; }
+  .words { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .w { font-size: 14px; padding: 2px 9px; border-radius: 6px; background: #fff; }
+  .w.p { color: var(--pos); border: 1px solid #b9cfc0; } .w.m { color: var(--neg); border: 1px solid #dfb9c0; }
+  .off { opacity: .45; }
+  .final { margin-top: 16px; padding: 14px 20px; border-radius: 12px; background: var(--mint); font-size: 20px; }
+  /* energy */
+  .ebar { display: flex; height: 34px; border-radius: 8px; overflow: hidden; background: var(--free); margin: 12px 0; }
+  .ebar div { min-width: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  td, th { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.total td { font-weight: 700; border-bottom: 0; }
+  .note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .hidden { display: none; }
+  .err { color: var(--neg); font-weight: 700; }
+  @media (max-width: 900px) { .g3, .g4 { grid-template-columns: 1fr 1fr; } .pipe { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); height: 34px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sentiment on a battery</h1>
+  <p class="sub">A tiny model on an ESP32-S3 reads each review and only asks the transformer on a Raspberry Pi Zero 2 W hub
+    when it is unsure. Every model here is the real trained model; the energy is simulated from the ESP32-S3 datasheet.</p>
+
+  <section>
+    <h2><span class="n">1</span>The model on the device</h2>
+    <div class="card">
+      <div class="label">ESP32-S3 on-chip memory: <span id="sram"></span></div>
+      <div class="mem" id="mem"></div>
+      <div class="legend" id="memLegend"></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><div class="label">Sentiment model on the device</div><div class="big" id="devSize"></div>
+        <div class="small" id="devWhat"></div></div>
+      <div class="card"><div class="label">Routing model on the device</div><div class="big" id="routerSize"></div>
+        <div class="small">Predicts whether the hub would fix the device's answer (two int8 tables of 65,536 weights)</div></div>
+      <div class="card"><div class="label">Transformer on the hub</div><div class="big" id="hubSize"></div>
+        <div class="small" id="hubWhat"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>Try a review</h2>
+    <textarea id="text" placeholder="Type or paste a movie review, or pick a sample below"></textarea>
+    <div class="chips" id="samples"></div>
+    <div class="controls">
+      <label>Routing rule
+        <select id="policy">
+          <option value="confidence">Confidence routing (send when unsure)</option>
+          <option value="learned">Learned deferral (send when the hub would help)</option>
+        </select></label>
+      <label>Send budget
+        <select id="rate">
+          <option value="0">0%: never send</option>
+          <option value="0.05">About 5% of reviews</option>
+          <option value="0.1">About 10% of reviews</option>
+          <option value="0.16" selected>About 16% (closes ¾ of the accuracy gap)</option>
+          <option value="0.25">About 25% of reviews</option>
+          <option value="0.5">About 50% of reviews</option>
+          <option value="1">100%: always send</option>
+        </select></label>
+      <button class="go" id="go">Analyse review</button>
+      <span id="status" class="small"></span>
+    </div>
+  </section>
+
+  <section id="result" class="hidden">
+    <h2><span class="n">3</span>What happened</h2>
+    <div class="pipe">
+      <div class="card">
+        <div class="label">Step 1 · Device model (ESP32-S3)</div>
+        <div class="verdict" id="devVerdict"></div>
+        <div class="bar"><i id="devBar"></i></div>
+        <div class="small" id="devProb"></div>
+        <div style="margin-top:10px" class="small">Words that pushed it positive</div><div class="words" id="wPos"></div>
+        <div style="margin-top:8px" class="small">Words that pushed it negative</div><div class="words" id="wNeg"></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="card">
+        <div class="label">Step 2 · Send to the hub?</div>
+        <div class="verdict" id="routeVerdict"></div>
+        <p id="routeWhy" style="margin:8px 0 0"></p>
+        <p class="small" id="routeBytes"></p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="card" id="hubCard">
+        <div class="label">Step 3 · Hub transformer (Pi Zero 2 W)</div>
+        <div class="verdict" id="hubVerdict"></div>
+        <div class="bar"><i id="hubBar"></i></div>
+        <div class="small" id="hubProb"></div>
+      </div>
+    </div>
+    <div class="final" id="final"></div>
+  </section>
+
+  <section id="energySec" class="hidden">
+    <h2><span class="n">4</span>Energy on the real device (simulated)</h2>
+    <div class="card">
+      <div class="label">This review: <span id="eTotal"></span></div>
+      <div class="ebar" id="ebar"></div>
+      <table>
+        <thead><tr><th>Part</th><th>Calculation</th><th class="num">Energy</th></tr></thead>
+        <tbody id="eRows"></tbody>
+      </table>
+      <div class="note" id="eNote"></div>
+    </div>
+  </section>
+
+  <section id="sessionSec" class="hidden">
+    <h2><span class="n">5</span>This session</h2>
+    <div class="grid g4">
+      <div class="card"><div class="label">Reviews analysed</div><div class="big" id="sCount"></div><div class="small" id="sSent"></div></div>
+      <div class="card"><div class="label">Energy used</div><div class="big" id="sEnergy"></div><div class="small" id="sAvg"></div></div>
+      <div class="card"><div class="label">If every review were sent</div><div class="big" id="sAll"></div><div class="small" id="sSave"></div></div>
+      <div class="card"><div class="label">Reviews per battery charge</div><div class="big" id="sBattery"></div>
+        <div class="small">at this average, 2,000 mAh 3.7 V cell</div></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <table>
+        <thead><tr><th>Review</th><th>Device</th><th>Sent?</th><th>Final</th><th class="num">Energy</th></tr></thead>
+        <tbody id="history"></tbody>
+      </table>
+      <button class="chip" id="reset" style="margin-top:10px">Clear session</button>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">6</span>Run real test reviews</h2>
+    <div class="card">
+      <p style="margin:0 0 12px">Runs random reviews from the official IMDb test set through the whole system with the settings above.
+        The hub runs live on every review that is sent.</p>
+      <div class="controls"><button class="go ghost" id="batch">Run 100 test reviews</button><span class="small" id="bStatus"></span></div>
+      <div class="grid g4 hidden" id="bOut" style="margin-top:16px">
+        <div class="card" style="background:#fff"><div class="label">Accuracy, routed</div><div class="big" id="bAcc"></div><div class="small" id="bAlone"></div></div>
+        <div class="card" style="background:#fff"><div class="label">Sent to hub</div><div class="big" id="bSent"></div><div class="small" id="bHubTime"></div></div>
+        <div class="card" style="background:#fff"><div class="label">Device energy</div><div class="big" id="bE"></div><div class="small" id="bEAll"></div></div>
+        <div class="card" style="background:#fff"><div class="label">Saving vs always sending</div><div class="big" id="bSave"></div><div class="small" id="bLocal"></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const fmtKB = (b) => `${Math.round(b / 1024).toLocaleString()} KB`;
+const fmtMB = (b) => `${Math.round(b / 1e6).toLocaleString()} MB`;
+const mJ = (x) => (x >= 1000 ? `${(x / 1000).toFixed(2)} J` : `${x >= 100 ? x.toFixed(1) : x.toFixed(2)} mJ`);
+const pct = (x, d = 1) => `${(x * 100).toFixed(d)}%`;
+const word = (y) => (y ? "Positive" : "Negative");
+let INFO = null, session = [], batchSeed = 0;
+
+function esc(s) { return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+async function post(path, body) {
+  const r = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+async function load() {
+  INFO = await (await fetch("/api/info")).json();
+  const sram = INFO.sram_bytes, dev = INFO.device_bytes, rt = INFO.router_bytes, free = sram - dev - rt;
+  $("sram").textContent = `${fmtKB(sram)}, of which the two models use ${fmtKB(dev + rt)} (${pct((dev + rt) / sram, 0)})`;
+  $("mem").innerHTML =
+    `<div style="width:${dev / sram * 100}%;background:var(--rose)">Sentiment model ${fmtKB(dev)}</div>` +
+    `<div style="width:${rt / sram * 100}%;background:var(--sage)">Router ${fmtKB(rt)}</div>` +
+    `<div style="width:${free / sram * 100}%;background:var(--free);color:var(--muted)">free ${fmtKB(free)}</div>`;
+  $("memLegend").innerHTML = `<span style="--c:var(--rose)">Sentiment model</span><span style="--c:var(--sage)">Routing model</span>` +
+    `<span style="--c:var(--free)">Free for firmware and buffers</span>`;
+  $("devSize").textContent = fmtKB(dev);
+  $("devWhat").textContent = `${INFO.device_weights.toLocaleString()} int8 weights, one per hashed word or word pair. ` +
+    "No vocabulary is stored; 92.3% accurate on the official test set.";
+  $("routerSize").textContent = fmtKB(rt);
+  const ratio = Math.round(INFO.hub_bytes_fp32 / (dev + rt));
+  $("hubSize").textContent = fmtMB(INFO.hub_bytes_fp32);
+  $("hubWhat").textContent = `RoBERTa-base, ${(INFO.hub_params / 1e6).toFixed(1)} million parameters ` +
+    `(about ${fmtMB(INFO.hub_bytes_int8)} as int8): ${ratio.toLocaleString()}× the device's models. 96.7% accurate.`;
+  $("samples").innerHTML = INFO.samples.map((s, i) => `<button class="chip" data-i="${i}">${esc(s.name)}</button>`).join("");
+  $("samples").onclick = (e) => { const i = e.target.dataset.i; if (i !== undefined) { $("text").value = INFO.samples[i].text; analyse(); } };
+}
+
+function settings() { return { policy: $("policy").value, rate: parseFloat($("rate").value) }; }
+
+function routeText(r) {
+  const share = r.rate >= 1 ? "every review" : r.rate <= 0 ? "no reviews" : `about ${pct(r.rate, 0)} of reviews`;
+  if (r.rate >= 1) return "The budget sends every review to the hub.";
+  if (r.rate <= 0) return "The budget sends nothing: the device always answers itself.";
+  if (r.policy === "confidence") {
+    const conf = 1 - r.score, cut = 1 - r.threshold;
+    return `The device is ${pct(conf, 0)} sure. It sends a review when it is less than ${pct(cut, 0)} sure, ` +
+      `a cut-off chosen on validation data so that ${share} are sent.`;
+  }
+  const pts = (x) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(1)}`;
+  return `The router scores the review ${pts(r.score)}: the chance the hub fixes the answer minus the chance it ` +
+    `breaks it, in percent. It sends above ${pts(r.threshold)}, a cut-off chosen on validation data so that ${share} are sent.`;
+}
+
+function render(res, text) {
+  const d = res.device, r = res.route, sent = r.sent;
+  $("result").classList.remove("hidden"); $("energySec").classList.remove("hidden"); $("sessionSec").classList.remove("hidden");
+  $("devVerdict").textContent = word(d.label); $("devVerdict").className = "verdict " + (d.label ? "pos" : "neg");
+  $("devBar").style.width = pct(d.p_pos); $("devBar").style.background = d.label ? "var(--pos)" : "var(--neg)";
+  $("devProb").textContent = `${pct(d.p_pos)} chance positive · ${pct(d.confidence, 0)} sure · ` +
+    `${d.buckets} word buckets · ${d.laptop_ms.toFixed(1)} ms on this laptop`;
+  const chips = (ws, cls) => ws.length ? ws.map((w) => `<span class="w ${cls}">${esc(w.text)} ${w.weight > 0 ? "+" : ""}${w.weight.toFixed(2)}</span>`).join("")
+                                       : `<span class="small">none</span>`;
+  $("wPos").innerHTML = chips(d.top_pos, "p"); $("wNeg").innerHTML = chips(d.top_neg, "m");
+
+  $("routeVerdict").textContent = sent ? "Yes, send it" : "No, answer locally";
+  $("routeVerdict").className = "verdict " + (sent ? "neg" : "pos");
+  $("routeWhy").textContent = routeText(r);
+  $("routeBytes").textContent = sent ? `Sends ${res.bytes_sent.toLocaleString()} bytes of text over Wi-Fi and waits for the label.` : "The radio stays off.";
+
+  const hub = res.hub;
+  $("hubCard").classList.toggle("off", !sent);
+  if (hub) {
+    $("hubVerdict").textContent = word(hub.label); $("hubVerdict").className = "verdict " + (hub.label ? "pos" : "neg");
+    $("hubBar").style.width = pct(hub.p_pos); $("hubBar").style.background = hub.label ? "var(--pos)" : "var(--neg)";
+    $("hubProb").textContent = `${pct(hub.p_pos)} chance positive · ran in ${hub.laptop_ms.toFixed(0)} ms on this laptop`;
+  } else {
+    $("hubVerdict").textContent = "Not needed"; $("hubVerdict").className = "verdict";
+    $("hubBar").style.width = "0"; $("hubProb").textContent = "The device answered on its own, so the hub never saw this review.";
+  }
+  const changed = hub && hub.label !== d.label;
+  $("final").innerHTML = `<b>Final answer: ${word(res.final)}</b>, from the ${sent ? "hub" : "device"}` +
+    (sent ? (changed ? ". The hub changed the device's answer." : ". The hub agreed with the device.") : ".");
+
+  const e = res.energy, p = INFO.energy_params, scale = INFO.energy_sent.total;
+  $("eTotal").textContent = `${mJ(e.total)} of device energy` + (sent ? ` (${Math.round(e.total / e.compute)}× answering locally)` : "");
+  $("ebar").innerHTML = `<div style="width:${e.compute / scale * 100}%;background:var(--rose)" title="processing"></div>` +
+    `<div style="width:${e.tx / scale * 100}%;background:var(--mauve)" title="radio transmit"></div>` +
+    `<div style="width:${e.rx / scale * 100}%;background:var(--sage)" title="radio receive"></div>`;
+  const row = (part, calc, val, on) => `<tr class="${on ? "" : "off"}"><td>${part}</td><td>${calc}</td><td class="num">${on ? mJ(val) : "not used"}</td></tr>`;
+  const V = p.V.value, ms = (s) => (s >= 1 ? `${s} s` : `${(s * 1000).toLocaleString()} ms`);
+  $("eRows").innerHTML =
+    row(`<span style="color:var(--rose)">■</span> Processing on the ESP32-S3`, `${V} V × ${(p.I_cpu.value * 1000).toFixed(1)} mA × ${ms(p.t_local.value)}`, e.compute, true) +
+    row(`<span style="color:var(--mauve)">■</span> Radio: send the review`, `${V} V × ${(p.I_tx.value * 1000).toFixed(0)} mA × ${ms(p.t_tx.value)}`, e.tx, sent) +
+    row(`<span style="color:var(--sage)">■</span> Radio: listen while the hub answers`, `${V} V × ${(p.I_rx.value * 1000).toFixed(0)} mA × ${ms(p.t_wait.value)}`, e.rx, sent) +
+    `<tr class="total"><td>Total for this review</td><td></td><td class="num">${mJ(e.total)}</td></tr>`;
+  $("eNote").textContent = "Bar scale: sending a review (300.6 mJ). Currents from the ESP32-S3 datasheet; the three timings are " +
+    "placeholders until measured on the board. Idle and sleep power are not included.";
+
+  session.unshift({ text, d: d.label, sent, final: res.final, e: e.total });
+  renderSession();
+}
+
+function renderSession() {
+  const n = session.length, sent = session.filter((s) => s.sent).length, used = session.reduce((t, s) => t + s.e, 0);
+  const all = n * INFO.energy_sent.total;
+  $("sCount").textContent = n.toLocaleString(); $("sSent").textContent = `${sent} sent to the hub (${n ? pct(sent / n, 0) : "0%"})`;
+  $("sEnergy").textContent = mJ(used); $("sAvg").textContent = n ? `${mJ(used / n)} per review on average` : "";
+  $("sAll").textContent = mJ(all); $("sSave").textContent = used ? `${(all / used).toFixed(1)}× more than this session` : "";
+  $("sBattery").textContent = n ? Math.round(INFO.battery_J / (used / n / 1000)).toLocaleString() : "–";
+  $("history").innerHTML = session.slice(0, 10).map((s) =>
+    `<tr><td>${esc(s.text.length > 70 ? s.text.slice(0, 70) + "…" : s.text)}</td><td class="${s.d ? "pos" : "neg"}">${word(s.d)}</td>` +
+    `<td>${s.sent ? "Yes" : "No"}</td><td class="${s.final ? "pos" : "neg"}"><b>${word(s.final)}</b></td><td class="num">${mJ(s.e)}</td></tr>`).join("");
+}
+
+async function analyse() {
+  const text = $("text").value;
+  if (!text.trim()) { $("status").innerHTML = `<span class="err">Type a review first.</span>`; return; }
+  $("go").disabled = true; $("status").textContent = "Analysing…";
+  try { render(await post("/api/classify", { text, ...settings() }), text); $("status").textContent = ""; }
+  catch (err) { $("status").innerHTML = `<span class="err">${esc(err.message)}</span>`; }
+  finally { $("go").disabled = false; }
+}
+
+async function runBatch() {
+  $("batch").disabled = true; $("bStatus").textContent = "Running 100 reviews…";
+  try {
+    const b = await post("/api/batch", { n: 100, seed: batchSeed++, ...settings() });
+    $("bOut").classList.remove("hidden");
+    $("bAcc").textContent = pct(b.accuracy, 0);
+    $("bAlone").textContent = `device alone ${pct(b.device_accuracy, 0)} · hub alone ${pct(b.hub_accuracy, 0)}`;
+    $("bSent").textContent = `${b.sent} of ${b.n}`; $("bHubTime").textContent = `hub ran in ${b.hub_laptop_s.toFixed(1)} s on this laptop`;
+    $("bE").textContent = mJ(b.energy_mJ); $("bEAll").textContent = `sending all 100: ${mJ(b.send_all_mJ)}`;
+    $("bSave").textContent = `${(b.send_all_mJ / b.energy_mJ).toFixed(1)}×`; $("bLocal").textContent = `device alone would use ${mJ(b.device_only_mJ)}`;
+    $("bStatus").textContent = "Click again for a different 100.";
+  } catch (err) { $("bStatus").innerHTML = `<span class="err">${esc(err.message)}</span>`; }
+  finally { $("batch").disabled = false; }
+}
+
+$("go").onclick = analyse;
+$("text").addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) analyse(); });
+$("batch").onclick = runBatch;
+$("reset").onclick = () => { session = []; renderSession(); };
+load();
+</script>
+</body>
+</html>

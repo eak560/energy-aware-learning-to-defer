@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dashboard",
+      "runtimeExecutable": ".venv/bin/python",
+      "runtimeArgs": ["-I", "src/dashboard.py"],
+      "port": 8765
+    },
+    {
+      "name": "demo",
+      "runtimeExecutable": ".venv/bin/python",
+      "runtimeArgs": ["-I", "demo/app.py"],
+      "port": 8770
+    }
+  ]
+}

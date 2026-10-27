@@ -1,0 +1,22 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/iamehsan/main/ap-KP1tiOFvXHVAnEdwWdMBvy
+✓ Created objects.
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src/modal_app.py
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src
+├── ✓ Created Function tokenize_remote.
+├── ✓ Created Function train_remote.
+└── ✓ Created Function predict_remote.
+
+[1ALoading weights:   0%|          | 0/393 [00:00<?, ?it/s]
+[1ALoading weights:   2%|▏         | 7/393 [00:00<00:15, 24.85it/s]
+[1ALoading weights:   3%|▎         | 13/393 [00:00<00:17, 21.75it/s]
+[1ALoading weights:   9%|▉         | 35/393 [00:00<00:05, 64.81it/s]
+[1ALoading weights:  33%|███▎      | 130/393 [00:00<00:00, 270.45it/s]
+[1ALoading weights:  46%|████▌     | 181/393 [00:00<00:00, 328.79it/s]
+[1ALoading weights:  58%|█████▊    | 226/393 [00:01<00:00, 321.04it/s]Loading weights: 100%|██████████| 393/393 [00:01<00:00, 373.06it/s]
+val {'accuracy': 0.968, 'f1': 0.9682034976152624, 'long_review_share': 0.1366}
+val_pool {'accuracy': 0.97366, 'f1': 0.9736563118836637, 'long_review_share': 0.12224}
+test {'accuracy': 0.97224, 'f1': 0.9724450091320574, 'long_review_share': 0.12344}
+✓ App completed. View run at 
+https://modal.com/apps/iamehsan/main/ap-KP1tiOFvXHVAnEdwWdMBvy

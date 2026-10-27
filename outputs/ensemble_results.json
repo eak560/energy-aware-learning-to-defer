@@ -1,0 +1,85 @@
+{
+  "chosen_on_val_pool": {
+    "members": [
+      "electra_large_1m",
+      "deberta_v3_large_1m",
+      "ngram1024KB"
+    ],
+    "method": "stack",
+    "val_pool_cv": 0.97544,
+    "stacker_weights": {
+      "electra_large_1m": 0.2048,
+      "deberta_v3_large_1m": 0.5765,
+      "ngram1024KB": 0.0415
+    }
+  },
+  "test_accuracy": 0.974,
+  "test_accuracy_95ci": [
+    0.97212,
+    0.9758410000000001
+  ],
+  "test_accuracy_deduplicated": 0.9739776951672863,
+  "deduplicated_test_reviews": 24479,
+  "best_single_by_val_pool": "deberta_v3_large_1m",
+  "mcnemar_vs_best_single": {
+    "a_only_right": 41,
+    "b_only_right": 24,
+    "p_value": 0.0463534743329112
+  },
+  "singles": {
+    "roberta_large_1m": {
+      "variant": "roberta_large_1m",
+      "val_pool": 0.97236,
+      "test": 0.97208,
+      "val_pool_by_variant": {
+        "roberta_large_1m": 0.97236,
+        "roberta_large_1m_chunked": 0.97234
+      }
+    },
+    "electra_large_1m": {
+      "variant": "electra_large_1m_chunked",
+      "val_pool": 0.97366,
+      "test": 0.97224,
+      "val_pool_by_variant": {
+        "electra_large_1m": 0.9735,
+        "electra_large_1m_chunked": 0.97366
+      }
+    },
+    "deberta_v3_large_1m": {
+      "variant": "deberta_v3_large_1m",
+      "val_pool": 0.9751,
+      "test": 0.97332,
+      "val_pool_by_variant": {
+        "deberta_v3_large_1m": 0.9751,
+        "deberta_v3_large_1m_chunked": 0.97502
+      }
+    },
+    "ngram1024KB": {
+      "variant": "ngram1024KB",
+      "val_pool": 0.92922,
+      "test": 0.928,
+      "val_pool_by_variant": {
+        "ngram1024KB": 0.92922
+      }
+    },
+    "roberta_large_official": {
+      "variant": "roberta_large_official",
+      "val_pool": 0.96382,
+      "test": 0.96544,
+      "val_pool_by_variant": {
+        "roberta_large_official": 0.96382
+      }
+    }
+  },
+  "reference_records": {
+    "ERNIE-Doc-Large (ACL 2021)": 0.971,
+    "XLNet (NeurIPS 2019)": 0.968,
+    "LlamBERT (2024, extra data)": 0.9668,
+    "RoBERTa-large (official data)": 0.9654
+  },
+  "mcnemar_vs_official_baseline": {
+    "a_only_right": 359,
+    "b_only_right": 145,
+    "p_value": 5.562362457390721e-22
+  }
+}

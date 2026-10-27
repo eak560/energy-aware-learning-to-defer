@@ -1,0 +1,18 @@
+deferral slice: 4.1% fixable, 3.9% breakable
+training learned router
+    C=0.1: accuracy at 10% sent 0.9297
+    C=0.3: accuracy at 10% sent 0.9298
+    C=1: accuracy at 10% sent 0.9291
+    C=3: accuracy at 10% sent 0.9278
+    C=10: accuracy at 10% sent 0.9261
+training learned_no_text router
+    C=0.1: accuracy at 10% sent 0.9293
+    C=0.3: accuracy at 10% sent 0.9293
+    C=1: accuracy at 10% sent 0.9293
+    C=3: accuracy at 10% sent 0.9293
+    C=10: accuracy at 10% sent 0.9293
+chip alone 0.9269, hub alone 0.9351
+confidence       5%: 0.9363 (5.2%)  10%: 0.9405 (10.7%)  20%: 0.9391 (20.9%)  30%: 0.9381 (31.7%)  val_best: 0.9407 (11.5%)   matches hub at 0.05
+learned_no_text  5%: 0.9364 (5.5%)  10%: 0.9403 (10.7%)  20%: 0.9400 (15.9%)  30%: 0.9400 (15.9%)  val_best: 0.9399 (15.3%)   matches hub at 0.05
+learned          5%: 0.9364 (5.4%)  10%: 0.9392 (10.4%)  20%: 0.9398 (20.4%)  30%: 0.9395 (30.8%)  val_best: 0.9399 (16.7%)   matches hub at 0.05
+learned vs confidence (McNemar p): 5%: 0.94  10%: 0.04  20%: 0.28  30%: 0.10  val_best: 0.22

@@ -1,0 +1,89 @@
+{
+  "size_curve": [
+    {
+      "train_reviews": 20000,
+      "alpha": 1e-06,
+      "alpha_at_grid_edge": false,
+      "val_accuracy_int8": 0.9018
+    },
+    {
+      "train_reviews": 100000,
+      "alpha": 3e-07,
+      "alpha_at_grid_edge": false,
+      "val_accuracy_int8": 0.911
+    },
+    {
+      "train_reviews": 300000,
+      "alpha": 1e-07,
+      "alpha_at_grid_edge": false,
+      "val_accuracy_int8": 0.9182
+    },
+    {
+      "train_reviews": 1000000,
+      "alpha": 3e-09,
+      "alpha_at_grid_edge": true,
+      "val_accuracy_int8": 0.923
+    },
+    {
+      "train_reviews": 1940408,
+      "alpha": 1e-08,
+      "alpha_at_grid_edge": false,
+      "val_accuracy_int8": 0.9276
+    }
+  ],
+  "full": {
+    "256KB_nbon": {
+      "alpha": 1e-08,
+      "alpha_at_grid_edge": false,
+      "val_accuracy_int8": 0.9276
+    },
+    "256KB_nboff": {
+      "alpha": 1e-07,
+      "alpha_at_grid_edge": true,
+      "val_accuracy_int8": 0.9272
+    },
+    "1024KB_nbon": {
+      "alpha": 3e-08,
+      "alpha_at_grid_edge": false,
+      "val_accuracy_int8": 0.9312
+    }
+  },
+  "ablations": {
+    "plus_test_movie_reviews": {
+      "train_reviews": 2047691,
+      "val": {
+        "accuracy": 0.9276,
+        "f1": 0.9285150078988942
+      },
+      "test": {
+        "accuracy": 0.92712,
+        "f1": 0.9281092171717171
+      }
+    },
+    "plus_amazon_long": {
+      "train_reviews": 3193858,
+      "val": {
+        "accuracy": 0.928,
+        "f1": 0.9288256227758007
+      },
+      "test": {
+        "accuracy": 0.9256,
+        "f1": 0.926488024662082
+      }
+    }
+  },
+  "main_model": {
+    "key": "256KB_nbon",
+    "bits": 18,
+    "alpha": 1e-08,
+    "bytes": 262144,
+    "val": {
+      "accuracy": 0.9276,
+      "f1": 0.9282030940103134
+    },
+    "test": {
+      "accuracy": 0.92688,
+      "f1": 0.9275465715418153
+    }
+  }
+}

@@ -1,0 +1,87 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/iamehsan/main/ap-ZMPNIxadNB1b9HQhjunhJc
+✓ Created objects.
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src/modal_app.py
+├── ✓ Uploaded /Volumes/Ehsan/AI Sentiment/src
+├── ✓ Created Function tokenize_remote.
+└── ✓ Created Function train_remote.
+H100: at most 0.50 h, about $1.98 of GPU time
+GPU: NVIDIA H100 80GB HBM3
+training on 20,000 reviews, mean 261 tokens
+
+[1ALoading weights:   0%|          | 0/389 [00:00<?, ?it/s]Loading weights: 100%|██████████| 389/389 [00:00<00:00, 8352.36it/s]
+step 20/1,250  loss 0.7246  227.0 reviews/s
+step 40/1,250  loss 0.6691  395.0 reviews/s
+step 60/1,250  loss 0.4361  401.7 reviews/s
+step 80/1,250  loss 0.2325  376.7 reviews/s
+step 100/1,250  loss 0.2359  338.5 reviews/s
+step 120/1,250  loss 0.1587  416.3 reviews/s
+step 140/1,250  loss 0.1645  391.9 reviews/s
+step 160/1,250  loss 0.1875  404.6 reviews/s
+step 180/1,250  loss 0.1700  381.7 reviews/s
+step 200/1,250  loss 0.1238  426.5 reviews/s
+step 220/1,250  loss 0.1483  406.5 reviews/s
+step 240/1,250  loss 0.1724  393.5 reviews/s
+step 260/1,250  loss 0.1807  387.5 reviews/s
+step 280/1,250  loss 0.1665  432.5 reviews/s
+step 300/1,250  loss 0.1674  393.3 reviews/s
+step 320/1,250  loss 0.1412  74.8 reviews/s
+step 340/1,250  loss 0.1389  325.0 reviews/s
+step 360/1,250  loss 0.1253  322.6 reviews/s
+step 380/1,250  loss 0.1464  371.8 reviews/s
+step 400/1,250  loss 0.1661  364.9 reviews/s
+step 420/1,250  loss 0.1409  391.0 reviews/s
+step 440/1,250  loss 0.1370  445.5 reviews/s
+step 460/1,250  loss 0.1110  429.6 reviews/s
+step 480/1,250  loss 0.0905  362.1 reviews/s
+step 500/1,250  loss 0.1816  392.6 reviews/s
+step 520/1,250  loss 0.1361  385.1 reviews/s
+step 540/1,250  loss 0.1657  324.1 reviews/s
+step 560/1,250  loss 0.1521  388.3 reviews/s
+step 580/1,250  loss 0.1528  356.1 reviews/s
+step 600/1,250  loss 0.1172  404.6 reviews/s
+step 620/1,250  loss 0.1003  68.8 reviews/s
+  val_pool accuracy 0.9638 at step 625
+
+[1AWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+[1AWriting model shards: 100%|██████████| 1/1 [00:02<00:00,  2.48s/it]
+[1AWriting model shards: 100%|██████████| 1/1 [00:02<00:00,  2.48s/it]
+step 640/1,250  loss 0.0864  526.2 reviews/s
+step 660/1,250  loss 0.0928  365.2 reviews/s
+step 680/1,250  loss 0.0731  352.7 reviews/s
+step 700/1,250  loss 0.1230  353.4 reviews/s
+step 720/1,250  loss 0.0940  396.7 reviews/s
+step 740/1,250  loss 0.0770  365.6 reviews/s
+step 760/1,250  loss 0.0482  389.1 reviews/s
+step 780/1,250  loss 0.0951  404.4 reviews/s
+step 800/1,250  loss 0.0901  390.4 reviews/s
+step 820/1,250  loss 0.0984  323.1 reviews/s
+step 840/1,250  loss 0.0839  363.8 reviews/s
+step 860/1,250  loss 0.0757  390.1 reviews/s
+step 880/1,250  loss 0.1170  394.0 reviews/s
+step 900/1,250  loss 0.0804  353.0 reviews/s
+step 920/1,250  loss 0.0733  81.8 reviews/s
+step 940/1,250  loss 0.0976  354.7 reviews/s
+step 960/1,250  loss 0.1125  357.4 reviews/s
+step 980/1,250  loss 0.1248  387.5 reviews/s
+step 1,000/1,250  loss 0.0722  355.3 reviews/s
+step 1,020/1,250  loss 0.1051  377.1 reviews/s
+step 1,040/1,250  loss 0.0317  348.9 reviews/s
+step 1,060/1,250  loss 0.0990  352.1 reviews/s
+step 1,080/1,250  loss 0.1026  390.4 reviews/s
+step 1,100/1,250  loss 0.0852  397.2 reviews/s
+step 1,120/1,250  loss 0.0672  434.1 reviews/s
+step 1,140/1,250  loss 0.1125  340.9 reviews/s
+step 1,160/1,250  loss 0.0463  398.7 reviews/s
+step 1,180/1,250  loss 0.0894  399.8 reviews/s
+step 1,200/1,250  loss 0.0711  470.1 reviews/s
+step 1,220/1,250  loss 0.0939  77.1 reviews/s
+step 1,240/1,250  loss 0.0693  349.0 reviews/s
+  val_pool accuracy 0.9621 at step 1,250
+
+[1ALoading weights:   0%|          | 0/393 [00:00<?, ?it/s]
+[1ALoading weights:  47%|████▋     | 183/393 [00:00<00:00, 1821.04it/s]Loading weights: 100%|██████████| 393/393 [00:00<00:00, 2503.53it/s]
+{"best_val": 0.96382, "val": {"accuracy": 0.9626, "f1": 0.962682099381361}, "val_pool": {"accuracy": 0.96382, "f1": 0.9636491510097458}, "test": {"accuracy": 0.96544, "f1": 0.9655639697090475}}
+✓ App completed. View run at 
+https://modal.com/apps/iamehsan/main/ap-ZMPNIxadNB1b9HQhjunhJc
